@@ -1,5 +1,5 @@
 # Movie_Application
-A machine learning, JavaScript, SQLite movie similar movie suggestion application.
+A machine learning, JavaScript, and SQLite similar movie suggestion application.
 
 ## Overview
 The objective is to make a lightweight app that can be hosted on GitHub pages that provides a list of movies that might be of interest for viewing upon giving an example movie of interest.  The dataset to be used is the (ml-25m) which has movie ratings and free-text tagging scores.  This dataset come from [MovieLens](http://movielens.org), a movie recommendation service. 
