@@ -11,13 +11,13 @@ https://grouplens.org/datasets/movielens/25m/
 Slack Team 06-Purple Channel will be used for communication between team members
 
 ## Individual Branches and Targeted Technology
-Main
-    * Database 
-            SQLite to hold machine learning output, movie links, and ratings summary data for use in the app.
-    * Machinelearning 
-            KMeans clustering leveraging genome-scores
-    * Visualizationapp
-            D3 JavaScript providing user interaction and SQLite database queries.
+
+1. Database 
+   - SQLite to hold machine learning output, movie links, and ratings summary data for use in the app.
+2. Machinelearning 
+   - KMeans clustering leveraging genome-scores
+3. Visualizationapp
+   - D3 JavaScript providing user interaction and SQLite database queries.
 
 
 
