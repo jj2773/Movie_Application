@@ -12,11 +12,11 @@ Slack Team 06-Purple Channel will be used for communication between team members
 
 ## Individual Branches and Targeted Technology
 Main
-    -- Database 
+    * Database 
             SQLite to hold machine learning output, movie links, and ratings summary data for use in the app.
-    -- Machinelearning 
+    * Machinelearning 
             KMeans clustering leveraging genome-scores
-    -- Visualizationapp
+    * Visualizationapp
             D3 JavaScript providing user interaction and SQLite database queries.
 
 
