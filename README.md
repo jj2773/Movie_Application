@@ -22,7 +22,7 @@ Slack Team 06-Purple Channel will be used for communication between team members
 ## Movie Genome Scoring Tag Correlation
 There are over 1000 user comment tags that were scored with a relevance by movielens group against each movie.  It is desired to leverage this scoring to find movies that are similar in tagging.  The movies could then be clustered by tag scoring using a KMeans machine learning algorithm. As a first step it was desired to plot similar movies for all genome tag relevance scores for a visual correlation.  As seen in the below graph a correlation does exist and is stronger for movies that are more similar.
 
-![alt text](https://github.com/jj2773/Movie_Application/blob/main/resources/readme_correl.PNG)
+![alt text](https://github.com/jj2773/Movie_Application/blob/main/Resources/readme_correl.png)
 
 
 
