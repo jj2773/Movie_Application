@@ -1,5 +1,5 @@
 # Movie_Application
-A machine learning, JavaScript, and SQLite similar movie suggestion application.
+Utilizing Machine Learning, JavaScript, PostGres, and SQLite a similar movie suggestion application is developed.
 
 ## Overview
 The objective is to make a lightweight app that can be hosted on GitHub pages that provides a list of movies that might be of interest for viewing upon giving an example movie of interest.  The dataset to be used is the (ml-25m) which has movie ratings and free-text tagging scores.  This dataset come from [MovieLens](http://movielens.org), a movie recommendation service. To ensure that this is a valid dataset, the purple team perfomed some correlation analysis as mentioned in "movie genome scoring tag relation". 
@@ -19,7 +19,9 @@ Slack Team 06-Purple Channel will be used for communication between team members
 ## Individual Branches and Targeted Technology
 
 1. Database 
-   - SQLite to hold machine learning output, movie links, and ratings summary data for use in the app.
+   - Two databases are leveraged for this project.
+   - A PostGres database houses the movielens data which is then pulled into the machine learning workbook.
+   - A SQLite database was used to hold the machine learning output, movie links, and ratings summary data for use in the app.
 2. Machinelearning 
    - KMeans clustering leveraging genome-scores
 3. Visualizationapp
@@ -41,8 +43,5 @@ There are over 1000 user comment tags that were scored with a relevance by movie
 
 Citation
 ========
-
-To acknowledge use of the dataset in publications, please cite the following paper:
-
 > F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4: 19:1–19:19. <https://doi.org/10.1145/2827872>
 
