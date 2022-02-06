@@ -1,4 +1,4 @@
-,movieId,Cluster,title,genres
+,movieid,Cluster,title,genres
 0,1,107,Toy Story (1995),Adventure|Animation|Children|Comedy|Fantasy
 1,2,50,Jumanji (1995),Adventure|Children|Fantasy
 2,3,41,Grumpier Old Men (1995),Comedy|Romance
@@ -6592,7 +6592,7 @@
 6590,7785,83,"Time for Drunken Horses, A (Zamani barayé masti asbha) (2000)",Drama
 6591,7786,129,Genghis Blues (1999),Documentary
 6592,7787,103,To Hell and Back (1955),Action|Drama|War
-6593,7789,174,"11'09""01 - September 11 (2002)",Drama
+6593,7789,174,11'0901 - September 11 (2002),Drama
 6594,7790,110,"Bon Voyage, Charlie Brown (and Don't Come Back!) (1980)",Animation|Children|Comedy
 6595,7791,187,Internal Affairs (1990),Crime|Thriller
 6596,7792,153,"Parallax View, The (1974)",Thriller
