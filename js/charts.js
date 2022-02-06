@@ -16,7 +16,7 @@ function init() {
       });
   // Demographics Panel 
   function buildMetadata(movieID) {
-    d3.json("js/data.json").then((data);
+    d3.json("js/data.json").then((data))
       // Filter the data for the object with the desired sample number
       var resultArray = metadata.filter(movieObj => movieObj.id == movieID);
       var result = resultArray[0];
@@ -34,6 +34,6 @@ function init() {
         {console.log(key + ': ' + value);}
         
       })
-    });
+  
 }
 }
