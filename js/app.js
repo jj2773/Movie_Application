@@ -1,28 +1,31 @@
-
-fetch('/js/data.json')
+var data = fetch('./js/data.json')
   .then(res => res.json())
   .then(data => console.log(data));
 // from data.js
-
-tableData = data1;
+var data= JSON.stringify('./js/data.json')
+data = JSON.parse(data);
+data.forEach(function(element){
+    console.log(element);
+});
+const tableData=data;
 
 
 // get table references
 var tbody = d3.select("tbody");
 
-function buildTable(data1) {
+function buildTable(data) {
   // First, clear out any existing data
   tbody.html("");
 
   // Next, loop through each object in the data
   // and append a row and cells for each value in the row
-  data.forEach((data1Row) => {
+  data.forEach((dataRow) => {
     // Append a row to the table body
     let row = tbody.append("tr");
 
     // Loop through each field in the dataRow and add
     // each value as a table cell (td)
-    Object.values(data1Row).forEach((val) => {
+    Object.values(dataRow).forEach((val) => {
       let cell = row.append("td");
       cell.text(val);
     });
