@@ -1,12 +1,12 @@
-var data = fetch('./js/data.json')
-  .then(res => res.json())
-  .then(data => console.log(data));
+
+    var request = new XMLHttpRequest();
+    request.open("GET", "./js/data.json", false);
+    request.send(null)
+    var data = JSON.parse(request.responseText);
+
+
 // from data.js
-var data= JSON.stringify('./js/data.json')
-data = JSON.parse(data);
-data.forEach(function(element){
-    console.log(element);
-});
+
 const tableData=data;
 
 
