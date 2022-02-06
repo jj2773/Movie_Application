@@ -20,8 +20,8 @@ Slack Team 06-Purple Channel will be used for communication between team members
 
 1. Database 
    - Two databases are leveraged for this project.
-   - A PostGres database houses the movielens data which is then pulled into the machine learning workbook.
-   - A SQLite database was used to hold the machine learning output, movie links, and ratings summary data for use in the app.
+      - A PostGres database houses the movielens data which is then pulled into the machine learning workbook.
+      - A SQLite database was used to hold the machine learning output, movie links, and ratings summary data for use in the app.
 2. Machinelearning 
    - KMeans clustering leveraging genome-scores
 3. Visualizationapp
