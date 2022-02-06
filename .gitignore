@@ -1,4 +1,4 @@
-# movielens dataset must be obtained from source distribution movielens.org/ml-25 so ignore csvs for uploading
+# movielens dataset must be obtained from source distribution https://grouplens.org/datasets/movielens/25m/ so ignore csvs for uploading
 genome-scores.csv
 genome-tags.csv
 movies.csv
