@@ -4,6 +4,7 @@ genome-tags.csv
 movies.csv
 ratings.csv
 links.csv
+tags.csv
 
 # ignore config files
 config.py
