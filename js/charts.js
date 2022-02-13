@@ -8,22 +8,22 @@ function init() {
     var selector = d3.select("#selDataset");
   
     // Use the list of sample names to populate the select options
-    d3.json("js/data.json").then((data) => {
-    var movieID=movieID
-        data.forEach((movieID) => {   
+    d3.json("js/data.json").then((movieId) => {
+    var movieId=movieId
+        value.forEach((movieId) => {   
             selector
             .append("option")
-            .text(movieID) 
-        Object.values(movieID).forEach((val) => {
+            .text(movieId) 
+        data.forEach((val) => {
             selector
-            .property("value", movieID);
+            .property("value", val);
               });
             
             
         });
   
       // Use the first sample from the list to build the initial plots
-      var firstCluster = cluster[0];
+      var firstCluster = Cluster[0];
       buildCharts(firstCluster);
       buildMetadata(firstCluster);
     });
@@ -39,11 +39,11 @@ function init() {
     
   }
   // Demographics Panel 
-  function buildMetadata(sample) {
+  function buildMetadata(movieId) {
     d3.json("js/data.json").then((data) => {
-      var metadata = data.metadata;
+      var metadata = data.title_x;
       // Filter the data for the object with the desired sample number
-      var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+      var resultArray = metadata.filter(sampleObj => sampleObj.id == title_x);
       var result = resultArray[0];
       // Use d3 to select the panel with id of `#sample-metadata`
       var panel = d3.select("#sample-metadata");
