@@ -1,5 +1,5 @@
 var request = new XMLHttpRequest();
-    request.open("GET", "./js/data.json", false);
+    request.open("GET", "./js/data2.json", false);
     request.send(null)
     var data = JSON.parse(request.responseText);
 
@@ -8,13 +8,13 @@ function init() {
     var selector = d3.select("#movieDataset");
   
     // Use the list of sample names to populate the select options
-    d3.json("js/data.json").then((movieId) => {
-    var movieId=movieId
-        data.forEach((movieId) => {   
+    d3.json("js/data2.json").then((movieid) => {
+    var movieid=movieid
+        data.forEach((movieid) => {   
             selector
             .append("option")
-            .text(movieId)
-            .property("value", movieId);
+            .text(movieid)
+            .property("value", movieid);
         data.forEach((val) => {
             selector
             .property("value", val);
