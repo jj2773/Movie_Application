@@ -5,15 +5,16 @@ var request = new XMLHttpRequest();
 
 function init() {
     // Grab a reference to the dropdown select element
-    var selector = d3.select("#selDataset");
+    var selector = d3.select("#movieDataset");
   
     // Use the list of sample names to populate the select options
     d3.json("js/data.json").then((movieId) => {
     var movieId=movieId
-        value.forEach((movieId) => {   
+        data.forEach((movieId) => {   
             selector
             .append("option")
-            .text(movieId) 
+            .text(movieId)
+            .property("value", movieId);
         data.forEach((val) => {
             selector
             .property("value", val);
@@ -39,7 +40,7 @@ function init() {
     
   }
   // Demographics Panel 
-  function buildMetadata(movieId) {
+  function buildMetadata(_movieId) {
     d3.json("js/data.json").then((data) => {
       var metadata = data.title_x;
       // Filter the data for the object with the desired sample number
