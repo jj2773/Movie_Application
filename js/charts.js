@@ -7,44 +7,11 @@ var request = new XMLHttpRequest();
             var option;
             for (var i = 0; i < data.length; i++) {
               option = document.createElement('option');
-              option.text = data[i]["movieId"];
+              option.text = data[i]["title_x"];
               select.add(option);
             }
-}
-function init() {
-    // Grab a reference to the dropdown select element
-    var selector = d3.select("#movieDataset");
-  
-    // Use the list of sample names to populate the select options
-    d3.json("js/data.json").then((value) => {
-    
-        value.forEach((title_x) => {   
-            selector
-            .append("option")
-            .text(title_x)
-            .property("value", title_x);
-              });
-            
-            
-        });
-  
-      // Use the first sample from the list to build the initial plots
-      var firstCluster = data.Cluster;
-      buildCharts(firstCluster);
-      buildMetadata(firstCluster);
-    }
-  
-  // Initialize the dashboard
-  init();
-  
-  function optionChanged(newCluster) {
-    // Fetch new data each time a new sample is selected
-    buildMetadata(newCluster);
-    buildCharts(newCluster);
-    
-  }
   // Demographics Panel 
-  function buildMetadata(_movieId) {
+  function buildMetadata(title_x) {
     d3.json("js/data.json").then((data) => {
       var metadata = data.title_x;
       // Filter the data for the object with the desired sample number
@@ -67,8 +34,7 @@ function init() {
   
     });
   }
-  
-  
+}
   
   
   
