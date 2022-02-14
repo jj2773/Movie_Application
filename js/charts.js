@@ -8,7 +8,6 @@ function addOptions(){
                 for (var i = 0; i < data.length; i++) {
                  option = document.createElement('option');
                  option.text = data[i]["title_x"];
-                 option.appendChild=data[i]["Cluster"];
                  select.add(option);
                  
                 }
