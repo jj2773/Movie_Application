@@ -1,34 +1,38 @@
+function addOptions(){
 var request = new XMLHttpRequest();
-    request.open("GET", "./js/data2.json", false);
+    request.open("GET", "./js/data.json", false);
     request.send(null)
     var data = JSON.parse(request.responseText);
-
+    var select = document.getElementById('movieDataset');
+            var option;
+            for (var i = 0; i < data.length; i++) {
+              option = document.createElement('option');
+              option.text = data[i]["movieId"];
+              select.add(option);
+            }
+}
 function init() {
     // Grab a reference to the dropdown select element
     var selector = d3.select("#movieDataset");
   
     // Use the list of sample names to populate the select options
-    d3.json("js/data2.json").then((movieid) => {
-    var movieid=movieid
-        data.forEach((movieid) => {   
+    d3.json("js/data.json").then((value) => {
+    
+        value.forEach((title_x) => {   
             selector
             .append("option")
-            .text(movieid)
-            .property("value", movieid);
-        data.forEach((val) => {
-            selector
-            .property("value", val);
+            .text(title_x)
+            .property("value", title_x);
               });
             
             
         });
   
       // Use the first sample from the list to build the initial plots
-      var firstCluster = Cluster[0];
+      var firstCluster = data.Cluster;
       buildCharts(firstCluster);
       buildMetadata(firstCluster);
-    });
-  }
+    }
   
   // Initialize the dashboard
   init();
@@ -71,3 +75,4 @@ function init() {
   
     
   
+

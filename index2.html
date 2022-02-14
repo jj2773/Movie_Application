@@ -11,7 +11,8 @@
   
 </head>
 
-<body>
+<body onload="addOptions();">
+    
   
   
   <div class="container">
@@ -27,6 +28,7 @@
         <div class="well">
           <h5>Movie ID No:</h5>
           <select id="movieDataset" onchange="optionChanged(this.value)"></select>
+          <select id="movieDataset"></select>
         </div>
         <div class="panel panel-primary">
           <div class="panel-heading">
