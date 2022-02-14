@@ -1,45 +1,45 @@
+var request = new XMLHttpRequest();
+    request.open("GET", "./js/data2.json", false);
+    request.send(null)
+    var data = JSON.parse(request.responseText);
+
 function init() {
     // Grab a reference to the dropdown select element
-    var selector = d3.select("#selDataset");
+    var selector = d3.select("#movieDataset");
   
     // Use the list of sample names to populate the select options
-    d3.json("js/Data/samples.json").then((data) => {
-      var sampleNames = data.names;
-  
-      sampleNames.forEach((sample) => {
+    d3.json("js/data2.json").then((data) => {
+      var movieNames = movies.title;
+      movieNames.forEach((movieid) => {
         selector
           .append("option")
-          .text(sample)
-          .property("value", sample);
+          .text(movieid)
+          .property("value", movieid);
           
       });
-      
-  
-      // Use the first sample from the list to build the initial plots
-      var firstSample = sampleNames[0];
-      buildCharts(firstSample);
-      buildMetadata(firstSample);
+    
     });
   }
   
   // Initialize the dashboard
   init();
   
-  function optionChanged(newSample) {
+  
+  function optionChanged(newMovie) {
     // Fetch new data each time a new sample is selected
-    buildMetadata(newSample);
-    buildCharts(newSample);
+    buildMetadata(newMovie);
+    buildCharts(newMovie);
     
   }
   // Demographics Panel 
-  function buildMetadata(sample) {
-    d3.json("js/Data/samples.json").then((data) => {
-      var metadata = data.metadata;
+  function buildMetadata(movieid) {
+    d3.json("js/data2.json").then((data) => {
+      var metadata = movies.title;
       // Filter the data for the object with the desired sample number
-      var resultArray = metadata.filter(sampleObj => sampleObj.id == sample);
+      var resultArray = metadata.filter(sampleObj => sampleObj.id == movieid);
       var result = resultArray[0];
       // Use d3 to select the panel with id of `#sample-metadata`
-      var panel = d3.select("#sample-metadata");
+      var panel = d3.select("#moviedata");
   
       // Use `.html("") to clear any existing metadata
       panel.html("");
