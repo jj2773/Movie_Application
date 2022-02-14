@@ -1,17 +1,21 @@
 function addOptions(){
-var request = new XMLHttpRequest();
-    request.open("GET", "./js/data.json", false);
-    request.send(null)
-    var data = JSON.parse(request.responseText);
-    var select = document.getElementById('movieDataset');
-            var option;
-            for (var i = 0; i < data.length; i++) {
-              option = document.createElement('option');
-              option.text = data[i]["title_x"];
-              select.add(option);
-            }
+    var request = new XMLHttpRequest();
+        request.open("GET", "./js/data.json", false);
+        request.send(null)
+        var data = JSON.parse(request.responseText);
+        var select = document.getElementById('movieDataset');
+                var option;
+                for (var i = 0; i < data.length; i++) {
+                 option = document.createElement('option');
+                 option.text = data[i]["title_x"];
+                 option.appendChild=data[i]["Cluster"];
+                 select.add(option);
+                 
+                }
+           }
+          
   // Demographics Panel 
-  function buildMetadata(title_x) {
+function buildMetadata(title_x) {
     d3.json("js/data.json").then((data) => {
       var metadata = data.title_x;
       // Filter the data for the object with the desired sample number
@@ -34,10 +38,9 @@ var request = new XMLHttpRequest();
   
     });
   }
-}
-  
-  
-  
+
+
+                
   
     
   
