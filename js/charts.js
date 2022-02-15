@@ -2,20 +2,18 @@ var request = new XMLHttpRequest();
     request.open("GET", "./js/data2.json", false);
     request.send(null)
     var data = JSON.parse(request.responseText);
-
-
 function init() {
     // Grab a reference to the dropdown select element
     var selector = d3.select("#movieDataset");
   
     // Use the list of sample names to populate the select options
     d3.json("js/data2.json").then((data) => {
-      var movieNames=data.title;
-      movieNames.forEach((JSONmovie) => {
+      var movieNames=data.movies;
+      movieNames.forEach((movieid) => {
         selector
           .append("option")
-          .text(JSONmovie)
-          .property("value", JSONmovie);
+          .text(movieid)
+          .property("value", movieid);
           
       });
     
@@ -35,10 +33,10 @@ function init() {
   // Demographics Panel 
   function buildMetadata(movie) {
     d3.json("js/data2.json").then((data) => {
-      var metadata = data.movieid;
+      var metadata = data.movies;
       // Filter the data for the object with the desired sample number
       var resultArray = metadata.filter(movieObj => movieObj.id == movie);
-      var result = resultArray[0];
+      var result = resultArray[2];
       // Use d3 to select the panel with id of `#sample-metadata`
       var panel = d3.select("#moviedata");
   
@@ -51,8 +49,7 @@ function init() {
       Object.entries(result).forEach(([key, value]) => {
         panel.append("h6").text(`${key}: ${value}`);
         {console.log(key + ': ' + value);}
-        
+        });
       });
   
-    });
-  }
+    }
