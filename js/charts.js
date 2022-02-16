@@ -1,3 +1,7 @@
+var request = new XMLHttpRequest();
+    request.open("GET", "./js/data.json", false);
+    request.send(null)
+    var data = JSON.parse(request.responseText);
 function init() {
     // Grab a reference to the dropdown select element
     var selector = d3.select("#movieDataset");
@@ -5,19 +9,20 @@ function init() {
     // Use the list of sample names to populate the select options
     d3.json("js/data2.json").then((data) => { 
     
-      var movieNames=data.movies
+      var movieNames=data.title
       Object.entries(movieNames).forEach(([key, value]) => {
         console.log(key, value);
-     });
-      Object.entries(movieNames).forEach(([movieid]) => {
+     
+     Object.keys(movieNames).forEach(([title]) => {
         selector
           .append("option")
-          .text(JSON.stringify(movieid))
+          .text(JSON.stringify(title))
           
           
       });
     
     });
+  });
     
   }
   
@@ -35,7 +40,7 @@ function init() {
     d3.json("js/data2.json").then((data) => {
       var metadata = data.movies;
       // Filter the data for the object with the desired sample number
-      var resultArray = metadata.filter(movieidObj => movieidObj.id== movieid);
+      var resultArray = metadata.filter(movieid => movieid== movieid);
       var result = resultArray;
       // Use d3 to select the panel with id of `#sample-metadata`
       var panel = d3.select("#moviedata");
@@ -47,7 +52,7 @@ function init() {
       // Hint: Inside the loop, you will need to use d3 to append new
       // tags for each key-value in the metadata.
       Object.entries(result).forEach(([key, value]) => {
-        panel.append("h6").text(`${key}: ${value}`);
+        panel.append("h5").text(`${key}: ${value}`);
         {console.log(key + ': ' + value);}
         });
       });
