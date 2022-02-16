@@ -8,7 +8,8 @@ function init() {
     var selector = d3.select("#movieDataset");
   
     // Use the list of sample names to populate the select options
-    d3.json("js/data2.json").then((data) => {  
+    d3.json("js/data2.json").then((data) => { 
+      
       var movieNames=data.movies;
       movieNames.forEach((movieId) => {
         selector
