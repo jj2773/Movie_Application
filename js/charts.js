@@ -1,3 +1,8 @@
+var request = new XMLHttpRequest();
+    request.open("GET", "./js/data.json", false);
+    request.send(null)
+    var data = JSON.parse(request.responseText);
+
 function init() {
     // Grab a reference to the dropdown select element
     var selector = d3.select("#movieDataset");
@@ -9,7 +14,6 @@ function init() {
         selector
           .append("option")
           .text (JSON.stringify(movieId))
-          .property (JSON.stringify('value', movieId))
           
       });
     
@@ -33,7 +37,7 @@ function init() {
       var metadata = data.movies;
       // Filter the data for the object with the desired sample number
       var resultArray = metadata.filter(movieObj => movieObj.id == movie);
-      var result = resultArray[2];
+      var result = resultArray;
       // Use d3 to select the panel with id of `#sample-metadata`
       var panel = d3.select("#moviedata");
   
