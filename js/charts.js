@@ -1,20 +1,18 @@
-var request = new XMLHttpRequest();
-    request.open("GET", "./js/data.json", false);
-    request.send(null)
-    var data = JSON.parse(request.responseText);
-
 function init() {
     // Grab a reference to the dropdown select element
     var selector = d3.select("#movieDataset");
-  
+   
     // Use the list of sample names to populate the select options
     d3.json("js/data2.json").then((data) => { 
-      
-      var movieNames=data.movies;
-      movieNames.forEach((movieId) => {
+      var movieNames=data.movies
+      Object.entries(movieNames).forEach(([key, value]) => {
+        console.log(key, value);
+     });
+      Object.entries(movieNames).forEach(([movieid]) => {
         selector
           .append("option")
-          .text (JSON.stringify(movieId))
+          .text(JSON.stringify(movieid))
+          .property(JSON.stringify((movieid)))
           
       });
     
@@ -28,16 +26,15 @@ function init() {
   
   function optionChanged(newMovie) {
     // Fetch new data each time a new sample is selected
-    buildMetadata(newMovie);
-    buildCharts(newMovie);
+    buildMoviedata(newMovie);
     
   }
   // Demographics Panel 
-  function buildMetadata(movie) {
+  function buildMoviedata(movies1) {
     d3.json("js/data2.json").then((data) => {
       var metadata = data.movies;
       // Filter the data for the object with the desired sample number
-      var resultArray = metadata.filter(movieObj => movieObj.id == movie);
+      var resultArray = metadata.filter(movieid => movieid== movies1);
       var result = resultArray;
       // Use d3 to select the panel with id of `#sample-metadata`
       var panel = d3.select("#moviedata");
@@ -49,9 +46,10 @@ function init() {
       // Hint: Inside the loop, you will need to use d3 to append new
       // tags for each key-value in the metadata.
       Object.entries(result).forEach(([key, value]) => {
-        panel.append("h6").text(`${key}: ${value}`);
+        panel.append("h5").text(`${key}: ${value}`);
         {console.log(key + ': ' + value);}
         });
       });
   
     }
+
