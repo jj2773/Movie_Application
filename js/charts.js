@@ -8,12 +8,13 @@ function init() {
       movieNames.forEach((movieId) => {
         selector
           .append("option")
-          .text(movieId)
-          .property("value", movieId);
+          .text (JSON.stringify(movieId))
+          .property (JSON.stringify('value', movieId))
           
       });
     
     });
+    
   }
   
   // Initialize the dashboard
