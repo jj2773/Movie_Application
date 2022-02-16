@@ -25,9 +25,9 @@ function init() {
   init();
   
   
-  function optionChanged(movieid) {
+  function optionChanged(movieid1) {
     // Fetch new data each time a new sample is selected
-    buildMoviedata(movieid);
+    buildMoviedata(movieid1);
     
   }
   // Demographics Panel 
@@ -35,7 +35,7 @@ function init() {
     d3.json("js/data2.json").then((data) => {
       var metadata = data.movies;
       // Filter the data for the object with the desired sample number
-      var resultArray = metadata.filter(movieid => movieid== movieid);
+      var resultArray = metadata.filter(movieidObj => movieidObj.id== movieid);
       var result = resultArray;
       // Use d3 to select the panel with id of `#sample-metadata`
       var panel = d3.select("#moviedata");
@@ -47,7 +47,7 @@ function init() {
       // Hint: Inside the loop, you will need to use d3 to append new
       // tags for each key-value in the metadata.
       Object.entries(result).forEach(([key, value]) => {
-        panel.append("h5").text(`${key}: ${value}`);
+        panel.append("h6").text(`${key}: ${value}`);
         {console.log(key + ': ' + value);}
         });
       });
