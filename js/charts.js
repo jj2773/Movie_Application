@@ -1,20 +1,21 @@
 var request = new XMLHttpRequest();
     request.open("GET", "./js/data2.json", false);
     request.send(null)
-    var data = JSON.parse(request.responseText);
-
+    var data = JSON.parse(JSON.stringify(request.responseText));
+    var newData = data.data;
     function init() {
       // Grab a reference to the dropdown select element
       var selector = d3.select("#movieDataset");
     
       // Use the list of sample names to populate the select options
-      d3.json("js/data2.json").then((data) => {
-        var movieNames = data.movieid;
+      d3.json("js/data2.json").then((newData) => {
+        var movieNames = newData;
     
-        Object.entries([movieNames]).forEach((movie, val) => {
+        Object.keys(movieNames).forEach((val) => {
           selector
             .append("option")
-            .text(JSON.stringify(movie, val))
+            .text(JSON.parse(JSON.stringify(val)))
+            .property(JSON.parse(JSON.stringify('value', val)))
             
             
         });
@@ -30,13 +31,32 @@ function optionChanged(newMovie) {
   buildMetadata(newMovie);
   
 }
+// 👇️ Store a JSON value in local storage
+localStorage.setItem('movieid', JSON.stringify({movieid: '1'}));
+
+// 👇️ parse the value when accessing it
+const result = JSON.parse(localStorage.getItem('movieid'));
+window.onload = function getItem() {
+  fetch('./js/data2.json')
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`Error status: ${response.status}`);
+      }
+
+      return response.json();
+    })
+    .then(result => {
+      console.log(result);
+    })
+    .catch(err => console.log(err));
+  }
 // Demographics Panel 
-function buildMetadata(movie) {
-  d3.json("js/data2.json").then((data) => {
-    var metadata = data.movies;
+function buildMetadata(val) {
+  d3.json("js/data2.json").then((newData) => {
+    var metadata = newData;
     // Filter the data for the object with the desired sample number
-    var resultArray = metadata.filter(movieid => movieid.id == movie);
-    var result = resultArray[0];
+    var resultArray = metadata.filter(result => result== val);
+    var result1 = (JSON.parse(JSON.stringify(resultArray[1])));
     // Use d3 to select the panel with id of `#sample-metadata`
     var panel = d3.select("#moviedata");
 
@@ -46,7 +66,7 @@ function buildMetadata(movie) {
     // Use `Object.entries` to add each key and value pair to the panel
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
-    Object.entries(result).forEach(([key, value]) => {
+    Object.entries(result1).forEach(([key, value]) => {
       panel.append("h6").text(`${key}: ${value}`);
       {console.log(key + ': ' + value);}
       
@@ -59,5 +79,4 @@ function buildMetadata(movie) {
     // Use the first sample from the list to build the initial plots
   
 
-  
   
