@@ -19,7 +19,7 @@ var request = new XMLHttpRequest();
             
             
         });
-      // Use the first sample from the list to build the initial plots
+      // Use the first movie from the list to build the initial plots
     var firstMovie = movieNames[0];
     buildCharts(firstMovie);
     buildMetadata(firstMovie);
@@ -55,14 +55,14 @@ window.onload = function getItem() {
     })
     .catch(err => console.log(err));
   }
-// Demographics Panel 
+// Movie Info Panel 
 function buildMetadata(val) {
   d3.json("js/data2.json").then((newData) => {
     var metadata = newData;
     // Filter the data for the object with the desired sample number
     var resultArray = metadata.filter(newData => newData.movieid== val);
     var result1 = resultArray[0]
-    // Use d3 to select the panel with id of `#sample-metadata`
+    // Use d3 to select the panel with id of `#movie data`
     var panel = d3.select("#moviedata");
 
     // Use `.html("") to clear any existing metadata
@@ -80,8 +80,6 @@ function buildMetadata(val) {
   });
 }
   
-
-    // Use the first sample from the list to build the initial plots
     function buildCharts(val) {
       // 2. Use d3.json to load and retrieve the samples.json file 
       d3.json("js/data2.json").then((newData) => {
@@ -101,8 +99,9 @@ function buildMetadata(val) {
         // 7. Create the yticks for the bar chart.
         // Hint: Get the the top 10 otu_ids and map them in descending order  
         //  so the otu_ids with the most bacteria are last. 
-        ids = Array.from(newData);
-        var yticks = ids.map(newData => result1.Cluster + newData);
+        const set = new Set(val);
+        ids = Array.from(Set);
+        var yticks = ids.map(newData => result1.title + newData);
 
         console.log(yticks)
         
