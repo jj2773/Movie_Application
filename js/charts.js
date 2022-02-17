@@ -32,7 +32,7 @@ function optionChanged(newMovie) {
   
 }
 // 👇️ Store a JSON value in local storage
-localStorage.setItem('movieid', JSON.stringify({movieid: '1'}));
+var filter1=localStorage.setItem('movieid', JSON.stringify({movieid: '1'}));
 
 // 👇️ parse the value when accessing it
 const result = JSON.parse(localStorage.getItem('movieid'));
@@ -55,8 +55,8 @@ function buildMetadata(val) {
   d3.json("js/data2.json").then((newData) => {
     var metadata = newData;
     // Filter the data for the object with the desired sample number
-    var resultArray = metadata.filter(result => result== val);
-    var result1 = (JSON.parse(JSON.stringify(resultArray[1])));
+    var resultArray = metadata.filter(newData => newData.movieid== val);
+    var result1 = resultArray[0]
     // Use d3 to select the panel with id of `#sample-metadata`
     var panel = d3.select("#moviedata");
 
