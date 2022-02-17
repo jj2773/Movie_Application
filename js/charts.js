@@ -1,46 +1,42 @@
-var request = new XMLHttpRequest();
-    request.open("GET", "./js/data.json", false);
-    request.send(null)
-    var data = JSON.parse(request.responseText);
 function init() {
     // Grab a reference to the dropdown select element
     var selector = d3.select("#movieDataset");
    
     // Use the list of sample names to populate the select options
     d3.json("js/data2.json").then((data) => { 
-    
-      var movieNames=data.title
-      Object.entries(movieNames).forEach(([key, value]) => {
-        console.log(key, value);
-     
-     Object.keys(movieNames).forEach(([title]) => {
+    var movieNames=data.movies
+     Object.keys(movieNames).forEach((movie) => {
         selector
           .append("option")
-          .text(JSON.stringify(title))
+          .text (JSON.stringify(movie))
           
           
       });
+   
     
-    });
+
+    // Use the first sample from the list to build the initial plots
+    var firstSample1 = movieNames[1];
+    buildMoviedata(firstSample1);
   });
-    
-  }
+}
+  
+  
   
   // Initialize the dashboard
   init();
   
-  
-  function optionChanged(movieid1) {
+function optionChanged(newMovie) {
     // Fetch new data each time a new sample is selected
-    buildMoviedata(movieid1);
+    buildMoviedata(newMovie);
     
   }
   // Demographics Panel 
-  function buildMoviedata(movieid) {
+function buildMoviedata(movie) {
     d3.json("js/data2.json").then((data) => {
       var metadata = data.movies;
       // Filter the data for the object with the desired sample number
-      var resultArray = metadata.filter(movieid => movieid== movieid);
+      var resultArray = metadata.filter(movie => movie.id == movie);
       var result = resultArray;
       // Use d3 to select the panel with id of `#sample-metadata`
       var panel = d3.select("#moviedata");
@@ -54,9 +50,7 @@ function init() {
       Object.entries(result).forEach(([key, value]) => {
         panel.append("h5").text(`${key}: ${value}`);
         {console.log(key + ': ' + value);}
-        });
       });
-  
-    }
 
-    
+    });
+  }
