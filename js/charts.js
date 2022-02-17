@@ -89,41 +89,42 @@ function buildMetadata(val) {
        var movies = newData;
     
         // 4. Create a variable that filters the samples for the object with the desired sample number.
-        var filterArray = movies.filter(newData => newData.Cluster== val);
+        var filterArray = movies.filter(newData => newData.movieid== val);
         //  5. Create a variable that holds the first sample in the array.
         var result1 = filterArray[0];
     
         // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-        var  ids = result1.newData.movieid;
-        var labels = result1.newData.title;
-        var values = result1.newData.Cluster
+        var  ids = result1.movieid;
+        var labels = result1.title;
+        var values = result1.Cluster;
     
         // 7. Create the yticks for the bar chart.
         // Hint: Get the the top 10 otu_ids and map them in descending order  
         //  so the otu_ids with the most bacteria are last. 
-        //var yticks = ids.map(newData => "Cluster " + newData);
-    
-        //console.log(yticks)
+        ids = Array.from(newData);
+        var yticks = ids.map(newData => result1.Cluster + newData);
+
+        console.log(yticks)
         
     
         // 8. Create the trace for the bar chart. 
         var barData = [{
           x: values,
-          y: ids,
+          y: yticks,
           type: "bar",
           orientation: "h",
           text: labels 
         }];
         // 9. Create the layout for the bar chart. 
         var barLayout = {
-          title: "Movies",
-          xaxis: { title: "Cluster" },
-          yaxis: { title: "title" }
+          title: "",
+          xaxis: { title: "" },
+          yaxis: { title: "" }
        };
         // 10. Use Plotly to plot the data with the layout. 
     
        Plotly.newPlot('bar', barData, barLayout);
-      });
-    }
+        })
+      }
 
-  
+        
