@@ -9,13 +9,13 @@ var request = new XMLHttpRequest();
     
       // Use the list of sample names to populate the select options
       d3.json("js/data2.json").then((data) => {
-        var movieNames = data.movies;
+        var movieNames = data.movieid;
     
-        Object.keys([movieNames]).forEach((movie) => {
+        Object.entries([movieNames]).forEach((movie, val) => {
           selector
             .append("option")
-            .text(JSON.stringify(movie))
-            .property("value", movie);
+            .text(JSON.stringify(movie, val))
+            
             
         });
       
@@ -35,7 +35,7 @@ function buildMetadata(movie) {
   d3.json("js/data2.json").then((data) => {
     var metadata = data.movies;
     // Filter the data for the object with the desired sample number
-    var resultArray = metadata.filter(movieObj => movieObj.id == movie);
+    var resultArray = metadata.filter(movieid => movieid.id == movie);
     var result = resultArray[0];
     // Use d3 to select the panel with id of `#sample-metadata`
     var panel = d3.select("#moviedata");
