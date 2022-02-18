@@ -79,7 +79,7 @@ function buildMetadata(val) {
 
   });
 }
-    function buildCharts(val) {
+  function buildCharts(val) {
       // 2. Use d3.json to load and retrieve the samples.json file 
       d3.json("js/data.json").then((newData) => {
         // 3. Create a variable that holds the samples array. 
@@ -91,16 +91,14 @@ function buildMetadata(val) {
         var result1 = filterArray[0];
     
         // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-        var  ids = result1.movieId;
-        var labels = result1.Cluster;
-        var values = Object.entries[(result1.title_x)];
-        const set= new Set([result1]);
-        var values = Array.from(set);
-        var xticks=values.map(result1 => result1.ratingCounts *result1.avg_rating);
+        var titles = result1.title_x;
+        var cluster =result1.Cluster;
+        var ratings= result1.ratings;
+        var values = ratings.map(result1 => {return result1.ratings *result1.avg_rating});
         // 8. Create the trace for the bar chart. 
         var barData = [{
-          x: [result1.ratingCounts *result1.avg_rating],
-          y: values,
+          x: titles,
+          y: labels,
           type: "bar",
           orientation: "h",
           text: values
