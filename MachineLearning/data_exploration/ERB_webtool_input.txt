@@ -1,0 +1,38 @@
+--https://app.quickdatabasediagrams.com/#/
+
+movies as m
+----------
+movieid PK int 
+title text INDEX
+genres text
+
+
+
+genome-scores as gs
+------------
+id serial PK
+movieid int FK >- m.movieid 
+tagid int FK >- g.tagid 
+relevance numeric
+
+
+ratings as r
+---------
+userid  int 
+movieid int FK >- m.movieid
+rating numeric
+timestamp bigint
+
+
+genome-tags as g
+----
+tagid PK int
+tag text
+
+
+tags as t
+----
+userid  int 
+movieid int FK >- m.movieid
+tag text
+timestamp bigint
