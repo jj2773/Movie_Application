@@ -79,7 +79,7 @@ function buildMetadata(val) {
 
   });
 }
-  
+
     function buildCharts(val) {
       // 2. Use d3.json to load and retrieve the samples.json file 
       d3.json("js/data2.json").then((newData) => {
@@ -87,7 +87,7 @@ function buildMetadata(val) {
        var movies = newData;
     
         // 4. Create a variable that filters the samples for the object with the desired sample number.
-        var filterArray = movies.filter(newData => newData.movieid== val);
+        var filterArray = movies.filter(newDataObj => newDataObj.movieid== val);
         //  5. Create a variable that holds the first sample in the array.
         var result1 = filterArray[0];
     
@@ -95,21 +95,14 @@ function buildMetadata(val) {
         var  ids = result1.movieid;
         var labels = result1.title;
         var values = result1.Cluster;
-    
-        // 7. Create the yticks for the bar chart.
-        // Hint: Get the the top 10 otu_ids and map them in descending order  
-        //  so the otu_ids with the most bacteria are last. 
-        const set = new Set(val);
-        ids = Array.from(Set);
-        var yticks = ids.map(newData => result1.title + newData);
 
-        console.log(yticks)
+      
         
     
         // 8. Create the trace for the bar chart. 
         var barData = [{
           x: values,
-          y: yticks,
+          y: ids,
           type: "bar",
           orientation: "h",
           text: labels 
