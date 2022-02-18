@@ -1,3 +1,14 @@
+# movielens dataset must be obtained from source distribution https://grouplens.org/datasets/movielens/25m/ so ignore csvs for uploading
+genome-scores.csv
+genome-tags.csv
+movies.csv
+ratings.csv
+links.csv
+tags.csv
+
+# ignore config files
+config.py
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -8,6 +19,7 @@ __pycache__/
 
 # Distribution / packaging
 .Python
+config.py
 build/
 develop-eggs/
 dist/
