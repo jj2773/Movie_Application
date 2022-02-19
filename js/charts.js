@@ -58,7 +58,7 @@ function buildMetadata(val) {
   d3.json("js/data.json").then((newData) => {
     var metadata = newData;
     // Filter the data for the object with the desired sample number
-    var resultArray = metadata.filter(newData => newData.movieId== val);
+    var resultArray = metadata.filter(newData => newData.movieid== val);
     var result1 = resultArray[0]
     // Use d3 to select the panel with id of `#movie data`
     var panel = d3.select("#moviedata");
@@ -84,7 +84,7 @@ function buildMetadata(val) {
        var movies=  (JSON.parse(JSON.stringify(data)));
     
         // 4. Create a variable that filters the samples for the object with the desired sample number.
-        var filterArray = movies.filter(data => data.movieId== val);
+        var filterArray = movies.filter(data => data.movieid== val);
         //  5. Create a variable that holds the first sample in the array.
      
         
@@ -96,14 +96,14 @@ function buildMetadata(val) {
         
         var filterArray1 = movies.filter(data =>data.data ==data);
         
-        var clusterKeyValue2 = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["3"];
+        var clusterKeyValue2 = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["1"];
         console.log(clusterKeyValue2);
         
        
         
           
             
-          var movieTitle= (JSON.parse(JSON.stringify((Object.entries(movies)))))["1"];
+          var movieTitle= (JSON.parse(JSON.stringify((Object.entries(movies)))))["2"];
             
           var avgRatingValue = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["4"];
           var avgRatingCount = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["5"];
@@ -114,34 +114,18 @@ function buildMetadata(val) {
             return filterArray1[Cluster];
              });
              
-            
-
-          
-            
-            var vals = Object.keys(filterArray1).map(function (title_x) {
-          return filterArray1[title_x];
-           });
-            var ratings = Object.keys(filterArray).map(function (avg_rating) {
-          return filterArray[avg_rating];
-           });
            var values2 = movies.filter(obj => {
             return obj.Cluster === clusterKeyValue2;
           });
           
-             var titles=values2.map(({ title_x }) => title_x);
+             var titles=values2.map(({ title }) => title);
              var avg_rating=values2.map(({ avg_rating }) => avg_rating);
-             var ratingcounts=values2.map(({ ratingcounts }) => ratingcounts);
-             var ratings=titles.map(titles => avg_rating*ratingcounts);
-             var genre_x=values2.map(({ genre_x }) => genre_x);
-             var rating = values2.map( values => values.avg_rating* values.ratingcounts);
+             var rating_counts=values2.map(({ rating_counts }) => rating_counts);
+             var ratings=titles.map(titles => avg_rating*rating_counts);
+             var genres=values2.map(({ genres }) => genres);
+             var rating = values2.map( values => values.avg_rating* values.rating_counts);
              
-             console.log (genre_x);
-
-         //var yticks = resultEntries.map(data=>vals + titleValue);
-         var xticks= (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["4"];
-         var values = (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["1"];
-         
-         // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
+             console.log (genres);
   
     
           var barData = [{
