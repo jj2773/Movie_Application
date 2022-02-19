@@ -101,7 +101,7 @@ function buildMetadata(val) {
         var clusterValue= (JSON.parse(JSON.stringify((Object.values(movies)))))["3"];
         var filterArray1 = movies.filter(data =>data.data ==data);
         var resultEntries =(JSON.parse(JSON.stringify((Object.entries(filterArray1)))));
-        var clusterKeyValue2 = (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["3"];
+        var clusterKeyValue2 = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["3"];
         console.log(clusterKeyValue2);
         
        
@@ -112,7 +112,7 @@ function buildMetadata(val) {
             
           var avgRatingValue = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["4"];
           var avgRatingCount = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["5"];
-          var titleValue =(JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["1"];
+          
           
 
           var clusterValue = Object.keys(filterArray1).map(function (Cluster) {
@@ -129,12 +129,15 @@ function buildMetadata(val) {
             var ratings = Object.keys(filterArray).map(function (avg_rating) {
           return filterArray[avg_rating];
            });
-            
-            
-            
-           
-           
+           var values2 = movies.filter(obj => {
+            return obj.Cluster === clusterKeyValue2;
+          });
           
+             var titles=values2.map(({ title_x }) => title_x);
+             var avg_rating=values2.map(({ avg_rating }) => avg_rating);
+             var ratingcounts=values2.map(({ ratingcounts }) => ratingcounts);
+             var ratings= ((ratingcounts)*(avg_rating));
+          console.log (ratingcounts);
 
          //var yticks = resultEntries.map(data=>vals + titleValue);
          var xticks= (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["4"];
@@ -145,7 +148,7 @@ function buildMetadata(val) {
     
           var barData = [{
             x: ratings,
-            y: values,
+            y: titles,
             type: "bar",
             orientation: "h",
             text: ""
