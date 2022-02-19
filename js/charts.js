@@ -20,9 +20,7 @@ var request = new XMLHttpRequest();
             
         });
       // Use the first movie from the list to build the initial plots
-    var firstMovie = movieNames[0];
-    buildCharts(firstMovie);
-    buildMetadata(firstMovie);
+    
   });
 }
   
@@ -81,37 +79,100 @@ function buildMetadata(val) {
 }
   function buildCharts(val) {
       // 2. Use d3.json to load and retrieve the samples.json file 
-      d3.json("js/data.json").then((newData) => {
+      d3.json("js/data.json").then((data) => {
         // 3. Create a variable that holds the samples array. 
-       var movies = newData;
+       var movies=  (JSON.parse(JSON.stringify(data)));
     
         // 4. Create a variable that filters the samples for the object with the desired sample number.
-        var filterArray = movies.filter(newData => newData.movieId== val);
+        var filterArray = movies.filter(data => data.movieId== val);
         //  5. Create a variable that holds the first sample in the array.
-        var result1 = filterArray[0];
+     
+        
+        var clusterKeyValue = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["3"];
+        
+        
+        var avgRatingKey = (JSON.parse(JSON.stringify((Object.keys(filterArray[0])))))["4"];
+        
+        var avgRatingValue = [];
+        var avgRatingCount = [];
+        var cluster = Object.keys(movies).map(function (Cluster) {
+          return movies[Cluster];
+         });
+        var clusterValue= (JSON.parse(JSON.stringify((Object.values(movies)))))["3"];
+        var filterArray1 = movies.filter(data =>data.data ==data);
+        var resultEntries =(JSON.parse(JSON.stringify((Object.entries(filterArray1)))));
+        var clusterKeyValue2 = (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["3"];
+        console.log(clusterKeyValue2);
+        
+       
+        
+          
+            
+          var movieTitle= (JSON.parse(JSON.stringify((Object.entries(movies)))))["1"];
+            
+          var avgRatingValue = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["4"];
+          var avgRatingCount = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["5"];
+          var titleValue =(JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["1"];
+          
+
+          var clusterValue = Object.keys(filterArray1).map(function (Cluster) {
+            return filterArray1[Cluster];
+             });
+             
+            
+
+          
+            
+            var vals = Object.keys(filterArray1).map(function (title_x) {
+          return filterArray1[title_x];
+           });
+            var ratings = Object.keys(filterArray).map(function (avg_rating) {
+          return filterArray[avg_rating];
+           });
+            
+            
+            
+           
+           
+          
+
+         //var yticks = resultEntries.map(data=>vals + titleValue);
+         var xticks= (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["4"];
+         var values = (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["1"];
+         
+         // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
+  
     
-        // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
-        var titles = result1.title_x;
-        var cluster =result1.Cluster;
-        var ratings= result1.ratings;
-        var values = ratings.map(result1 => {return result1.ratings *result1.avg_rating});
+          var barData = [{
+            x: ratings,
+            y: values,
+            type: "bar",
+            orientation: "h",
+            text: ""
+          }];
+        
+      
+        
+        
+
+      
         // 8. Create the trace for the bar chart. 
-        var barData = [{
-          x: titles,
-          y: labels,
-          type: "bar",
-          orientation: "h",
-          text: values
-        }];
+        
         // 9. Create the layout for the bar chart. 
         var barLayout = {
           title: "",
           xaxis: { title: "Rating counts * ratings" },
           yaxis: { title: "Movie Titles" }
        };
+      
+    
+            
         // 10. Use Plotly to plot the data with the layout. 
     
        Plotly.newPlot('bar', barData, barLayout);
-        });
+       
+    
+ 
+      })
       }
-      
+  
