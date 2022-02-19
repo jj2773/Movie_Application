@@ -88,19 +88,14 @@ function buildMetadata(val) {
         //  5. Create a variable that holds the first sample in the array.
      
         
-        var clusterKeyValue = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["3"];
         
-        
-        var avgRatingKey = (JSON.parse(JSON.stringify((Object.keys(filterArray[0])))))["4"];
-        
-        var avgRatingValue = [];
-        var avgRatingCount = [];
+       
         var cluster = Object.keys(movies).map(function (Cluster) {
           return movies[Cluster];
          });
-        var clusterValue= (JSON.parse(JSON.stringify((Object.values(movies)))))["3"];
+        
         var filterArray1 = movies.filter(data =>data.data ==data);
-        var resultEntries =(JSON.parse(JSON.stringify((Object.entries(filterArray1)))));
+        
         var clusterKeyValue2 = (JSON.parse(JSON.stringify((Object.values(filterArray[0])))))["3"];
         console.log(clusterKeyValue2);
         
