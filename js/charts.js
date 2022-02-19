@@ -137,9 +137,10 @@ function buildMetadata(val) {
              var avg_rating=values2.map(({ avg_rating }) => avg_rating);
              var ratingcounts=values2.map(({ ratingcounts }) => ratingcounts);
              var ratings=titles.map(titles => avg_rating*ratingcounts);
+             var genre_x=values2.map(({ genre_x }) => genre_x);
              var rating = values2.map( values => values.avg_rating* values.ratingcounts);
              
-             console.log (rating);
+             console.log (genre_x);
 
          //var yticks = resultEntries.map(data=>vals + titleValue);
          var xticks= (JSON.parse(JSON.stringify((Object.values(filterArray1)))))["4"];
