@@ -1,13 +1,12 @@
 body {
-    color: #f7f7f7;
+    color: #161010;
   }
   
   .jumbotron {
     background-image: url("");
-    background-size: 100% 100%;
+    background-size: 50% 50%;
     text-align: center;
   }
-  
   .article-title, .article-p {
     padding: 20px;
   }

@@ -5,10 +5,12 @@ var request = new XMLHttpRequest();
     var newData = data.data;
     function init() {
       // Grab a reference to the dropdown select element
+      
       var selector = d3.select("#movieDataset");
     
       // Use the list of sample names to populate the select options
       d3.json("js/data.json").then((newData) => {
+        
         var movieNames = newData;
     
         Object.keys(movieNames).forEach((val) => {
@@ -32,7 +34,11 @@ function optionChanged(newMovie) {
   // Fetch new data each time a new sample is selected
   buildCharts(newMovie);
   buildMetadata(newMovie);
+
   
+  
+
+
 }
 // Store a JSON value in local storage
 var filter1=localStorage.setItem('movieId', JSON.stringify({movieId: '1'}));
@@ -118,14 +124,14 @@ function buildMetadata(val) {
             return obj.Cluster === clusterKeyValue2;
           });
           
-             var titles=values2.map(({ title }) => title);
+             var titles=values2.map(({ title }) => title).slice(0,10).reverse();
              var avg_rating=values2.map(({ avg_rating }) => avg_rating);
              var rating_counts=values2.map(({ rating_counts }) => rating_counts);
              var ratings=titles.map(titles => avg_rating*rating_counts);
              var genres=values2.map(({ genres }) => genres);
-             var rating = values2.map( values => values.avg_rating* values.rating_counts);
-             
-             console.log (genres);
+             var rating = (values2.map( values => values.avg_rating* values.rating_counts).slice(0,10).reverse());
+             var genres2 = values2.map( values => values.genres);
+             console.log (genres2);
   
     
           var barData = [{
@@ -133,7 +139,7 @@ function buildMetadata(val) {
             y: titles,
             type: "bar",
             orientation: "h",
-            text: ""
+            text: titles,
           }];
         
       
@@ -145,10 +151,20 @@ function buildMetadata(val) {
         
         // 9. Create the layout for the bar chart. 
         var barLayout = {
-          title: "",
-          xaxis: { title: "Rating counts * ratings" },
-          yaxis: { title: "Movie Titles" }
-       };
+          showlegend: false,
+          xaxis: {
+            rangemode: 'tozero',
+            autorange: true,
+            title: "Avg_Rating *Ratings"
+          },
+          yaxis: {
+            rangemode: 'nonnegative',
+            autorange: true,
+            showticklabels: true,
+            tickangle: 55,
+            
+          }
+        };
       
     
             
@@ -156,8 +172,56 @@ function buildMetadata(val) {
     
        Plotly.newPlot('bar', barData, barLayout);
        
-    
- 
-      })
-      }
+      
+       var myWords =genres2;
+      
+        
+        
+       var margin = {top: 10, right: 10, bottom: 10, left: 10},
+    width = 450 - margin.left - margin.right,
+    height = 450 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#my_dataviz").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+// Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
+var layout = d3.layout.cloud()
+  .size([width, height])
+  .words(myWords.map(function(d) { return {text: d}; }))
+  .padding(10)
+  .fontSize(60)
+  .on("end", draw);
+layout.start();
+
+// This function takes the output of 'layout' above and draw the words
+// Better not to touch it. To change parameters, play with the 'layout' variable above
+function draw(words) {
+  svg
+    .append("g")
+      .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
+      .selectAll("text")
+        .data(words)
+      .enter().append("text")
+        .style("font-size", function(d) { return d.size + "px"; })
+        .attr("text-anchor", "middle")
+        .attr("transform", function(d) {
+          return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+        })
+        .text(function(d) { return d.text; });
+}
+           
+   })
   
+   
+
+
+
+}
+    
+        
+       
