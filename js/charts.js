@@ -130,15 +130,27 @@ function buildMetadata(val) {
              var ratings=titles.map(titles => avg_rating*rating_counts);
              var genres=values2.map(({ genres }) => genres);
              var rating = (values2.map( values => values.avg_rating* values.rating_counts).slice(0,10).reverse());
+             var rating2 = rating.slice(0,10).reverse();
              var genres2 = values2.map( values => values.genres);
              console.log (genres2);
   
     
           var barData = [{
-            x: rating,
+            x: rating2,
             y: titles,
             type: "bar",
             orientation: "h",
+            transforms: [{
+              type: 'sort',
+              target: 'x',
+              order: 'descending',
+            },
+            {
+              type: 'filter',
+              target: 'x',
+              operation: '>',
+              value: 1,
+            }],
             text: titles,
           }];
         
