@@ -2,67 +2,84 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Movie Application</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script data-require="jquery@*" data-semver="2.2.0" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script data-require="d3@*" data-semver="3.5.3" src="//cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.js"></script>
- 
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>Movie Recommendations</title>
   
-  <script src="https://d3js.org/d3.v3.min.js"></script>
-  <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
-  <script src="https://cdn.rawgit.com/wvengen/d3-wordcloud/master/lib/d3/d3.js"></script>
-    <script src="https://cdn.rawgit.com/wvengen/d3-wordcloud/master/lib/d3/d3.layout.cloud.js"></script>
-    <script src="https://cdn.rawgit.com/wvengen/d3-wordcloud/master/d3.wordcloud.js"></script>
-    
-  
+
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous" />
+    <link rel="stylesheet" href="static/css/styles.css" />
   
 </head>
 
-  <body>
-       
-    <script src="https://d3js.org/d3.v3.min.js"></script>
-    <script src="https://rawgit.com/jasondavies/d3-cloud/master/build/d3.layout.cloud.js"></script>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-12 jumbotron text-center">
-        <h1>Dashboard</h1>
-        <p> Use the interactive charts below to explore the dataset</p>
-      </div>
+<body class="bg-dark">
+  <div class="wrapper">
+    <!-- Navbar -->
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+      <a class="navbar-brand" href="/index.html">List of Movies</a>
+    </nav>
     </div>
-    <div class="row">
-      <div class="col-md-2">
-        <div class="well">
-          <h5>Movie ID:</h5>
-          <select id="movieDataset" onchange="optionChanged(this.value)"></select>
-        </div>
-        <div class="panel panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">Movie Info</h3>
-          </div>
-          <div id="moviedata" class="panel-body"></div>
-        </div>
-      </div>
-      <div class="col-md-5"></div>
-      <div id="my_dataviz"></div>
-      <div id="vis"></div>
-      <div id="drop"></div>
-      <div class="col-md-12">
-        <div id="bar"></div>
-    </div>
-    
-      
-     
-  </div>
-    
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="./js/data.json"></script> 
-    <script src="./js/charts.js"></script>
-    
+    <!-- Filter -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-3">
+          <div class="filters">
+            <form class="bg-dark">
+              <div class="form-group">
 
+
+                <p class="text-center">Filter Search</p>
+                <ul class="list-group">
+                  <li class="list-group-item bg-dark">
+                    <label for="obj.genres">Enter Movie Genre</label>
+                    <input type="text" placeholder="Adventure|Animation|Children|Comedy|Fantasy" id="genres" />
+                  </li>
+                  <li class="list-group-item bg-dark">
+                    <label for="obj.title">Enter a Movie Name</label>
+                    <input type="text" id="title" class="form-control" placeholder="Toy Story (1995)" />
+                  </li>
+                  <li class="list-group-item bg-dark">
+                    <label for="obj.avg_rating">Enter a Rating</label>
+                    <input type="text" id="avg_rating" class="form-control" placeholder="3.8937077946" />
+                  </li>
+                  <li>
+                    <p>Once finished with entering the criteria for your search please click next to get movie recommendations based on the criteria of your search. Please remember any movie ID, to view similar movie recommendations from your cluster.</p>
+                    <button class="button button1"><a href=index2.html>next</a></button>
+                  </li>
+                </ul>
+                  </ul>
+                  </div>
+                  </form>
+          </div>
+        </div>
+
+        <!-- Table -->
+        <div class="col-md-9 bg-black">
+          <table class="table table-striped bg-black">
+            <thead>
+              <tr>
+                <th>Movie ID No</th>
+                <th>Cluster</th>
+                <th>Title</th>
+                <th>Genre</th>
+                <th>Average Rating</th>
+                <th>Rating Counts</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+ 
+  <script src="./js/app.js"></script>
+  
 </body>
+
 </html>
