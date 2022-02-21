@@ -17,7 +17,7 @@ $('#genres' ).on('keyup', function(){
 
 
 // get table references
-var tbody = d3.select("Table");
+var tbody = d3.select("tbody");
 
 function buildTable(data) {
   // First, clear out any existing data
@@ -75,7 +75,7 @@ function updateFilters() {
     // matches the filter values
     let filteredData = tableData;
     Object.entries(filters).forEach(([key, value]) => {
-     filteredData=filteredData.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
+     filteredData=filteredData.filter((data =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1));
     });
     // 10. Finally, rebuild the table using the filtered data
     buildTable(filteredData);
