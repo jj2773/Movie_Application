@@ -192,9 +192,10 @@ function buildMetadata(val) {
        var margin = {top: 10, right: 10, bottom: 10, left: 10},
     width = 450 - margin.left - margin.right,
     height = 450 - margin.top - margin.bottom;
+    var fill = d3.scale.category20();
 
 // append the svg object to the body of the page
-var svg = d3.select("#my_dataviz").append("svg")
+var movieDataset = d3.select("#my_dataviz").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
@@ -209,11 +210,20 @@ var layout = d3.layout.cloud()
   .fontSize(60)
   .on("end", draw);
 layout.start();
-
+var options = movieDataset.selectAll("option")
+.data(myWords)
+.enter()
+.append("option")
+.text(function(d) {
+  return d;
+})
+.attr("value", function(d) {
+  return d;
+})
 // This function takes the output of 'layout' above and draw the words
 // Better not to touch it. To change parameters, play with the 'layout' variable above
 function draw(words) {
-  svg
+  movieDataset
     .append("g")
       .attr("transform", "translate(" + layout.size()[0] / 2 + "," + layout.size()[1] / 2 + ")")
       .selectAll("text")
@@ -224,16 +234,70 @@ function draw(words) {
         .attr("transform", function(d) {
           return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
         })
-        .text(function(d) { return d.text; });
+        .text(function(d) { return d.text; })
+        .on("change", update);
+        function update() {
+          // Using your function and the value of the venue to filter data
+          var filteredData = this.value;
+          // Calculate the new domain with the new values
+          fontScale.domain([
+            d3.min(newValue, function(d) {
+              return d.value
+            }),
+            d3.max(newValue, function(d) {
+              return d.value
+            }),
+          ]);
+          // Calculate the layout with new values
+          d3.layout.cloud()
+            .size([width, height])
+            .words(filteredData)
+            .rotate(0)
+            .text(function(d) {
+              return d.label;
+            })
+            .font("Impact")
+            .fontSize(function(d) {
+              return fontScale(d.value)
+            })
+            .on("end", draw)
+            .start()
+            .remove();
+            movieDataset
+            .transition()
+            .duration(10)
+            .style("font-size", function(d) {
+                return fontScale(d.value)
+            })
+            .attr("transform", function(d) {
+                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .style("fill-opacity", 1);
+            movieDataset
+            .exit()
+        .transition()
+            .duration(10)
+            .style('fill-opacity', 1e-6)
+            .attr('font-size', 1)
+            .remove()
+            d3.select("select").on("change", remove());
+        }
+       
+       
+        
+        
 }
-           
    })
-  
    
-
-
-
-}
     
         
-       
+}
+   
+
+  
+    
+   
+  
+
+
+
