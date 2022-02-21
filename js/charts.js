@@ -34,7 +34,7 @@ function optionChanged(newMovie) {
   // Fetch new data each time a new sample is selected
   buildCharts(newMovie);
   buildMetadata(newMovie);
-
+  d3.select("svg").remove();
   
   
 
@@ -235,63 +235,11 @@ function draw(words) {
           return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
         })
         .text(function(d) { return d.text; })
-        .on("change", update);
-        function update() {
-          // Using your function and the value of the venue to filter data
-          var filteredData = this.value;
-          // Calculate the new domain with the new values
-          fontScale.domain([
-            d3.min(newValue, function(d) {
-              return d.value
-            }),
-            d3.max(newValue, function(d) {
-              return d.value
-            }),
-          ]);
-          // Calculate the layout with new values
-          d3.layout.cloud()
-            .size([width, height])
-            .words(filteredData)
-            .rotate(0)
-            .text(function(d) {
-              return d.label;
-            })
-            .font("Impact")
-            .fontSize(function(d) {
-              return fontScale(d.value)
-            })
-            .on("end", draw)
-            .start()
-            .remove();
-            movieDataset
-            .transition()
-            .duration(10)
-            .style("font-size", function(d) {
-                return fontScale(d.value)
-            })
-            .attr("transform", function(d) {
-                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-            })
-            .style("fill-opacity", 1);
-            movieDataset
-            .exit()
-        .transition()
-            .duration(10)
-            .style('fill-opacity', 1e-6)
-            .attr('font-size', 1)
-            .remove()
-            d3.select("select").on("change", remove());
-        }
-       
-       
         
-        
-}
-   })
-   
-    
-        
-}
+      }
+    })
+  }
+  
    
 
   
