@@ -3,6 +3,10 @@ Utilizing Machine Learning, JavaScript, PostGres, and SQLite a similar movie sug
 
 [Google Slides Project Presentation](https://docs.google.com/presentation/d/1zOGgT9MDqIZ27gWdtoPrHMQ59aiYRrBtwYaAyDOytTI/edit?usp=sharing) 
 
+[Java Script Dashboard](https://jj2773.github.io/Movie_Application/) 
+
+[Tableau Dashboard](https://jj2773.github.io/Tableau_Embedded_Dashboard/) 
+
 ## Overview
 The objective is to make a lightweight app that can be hosted on GitHub pages that provides a list of movies that might be of interest for viewing upon giving an example movie of interest.  The dataset to be used is the (ml-25m) which has movie ratings and free-text tagging scores.  This dataset come from [MovieLens](http://movielens.org), a movie recommendation service. To ensure that this is a valid dataset, the purple team perfomed some correlation analysis as mentioned in "movie genome scoring tag relation". 
 
