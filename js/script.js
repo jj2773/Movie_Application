@@ -3,15 +3,21 @@
     request.open("GET", "./js/data.json", false);
     request.send(null)
     var data = JSON.parse(request.responseText);
-
+    
 
 // from data.js
-
 const tableData=data;
 
 
+$('#genres' ).on('keyup', function(){
+ var value=$(this).val()
+ console.log (value)
+})
+
+
+
 // get table references
-var tbody = d3.select("tbody");
+var tbody = d3.select("Table");
 
 function buildTable(data) {
   // First, clear out any existing data
@@ -32,7 +38,6 @@ function buildTable(data) {
   });
 }
 
-// 1. Create a variable to keep track of all the filters as an object.
 filters= {};
 
 // 3. Use this function to update the filters. 
@@ -50,7 +55,7 @@ function updateFilters() {
     // 5. If a filter value was entered then add that filterId and value
     // to the filters list. Otherwise, clear that filter from the filters object.
     if (elementValue) {
-        filters[filterId] = elementValue;
+        filters[filterId] = elementValue.toLowerCase();
     } else {
       delete filters[filterId];
     }
@@ -61,17 +66,17 @@ function updateFilters() {
   }
   
   // 7. Use this function to filter the table when data is entered.
-  function filterTable() {
+  function filterTable(data, value) {
   
     // 8. Set the filtered data to the tableData.
-    let filteredData = tableData;
+    
   
     // 9. Loop through all of the filters and keep any data that
     // matches the filter values
+    let filteredData = tableData;
     Object.entries(filters).forEach(([key, value]) => {
-      filteredData = filteredData.filter(row => row[key] === value);
+     filteredData=filteredData.filter((data) =>  JSON.stringify(data).toLowerCase().indexOf(value.toLowerCase()) !== -1);
     });
-  
     // 10. Finally, rebuild the table using the filtered data
     buildTable(filteredData);
   }
