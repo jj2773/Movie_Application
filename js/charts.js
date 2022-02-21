@@ -230,6 +230,7 @@ function draw(words) {
         .data(words)
       .enter().append("text")
         .style("font-size", function(d) { return d.size + "px"; })
+        .style("fill", "#69b3a2")
         .attr("text-anchor", "middle")
         .attr("transform", function(d) {
           return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
