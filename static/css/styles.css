@@ -1,9 +1,9 @@
 body {
-    color: white;
+    color: rgb(15, 3, 3);
   }
   
   .jumbotron {
-    background-image: url("");
+    background-image: url("/static/images/popcorn.jpg");
     background-size: 50% 50%;
     text-align: center;
   }
