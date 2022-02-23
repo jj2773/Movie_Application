@@ -124,12 +124,12 @@ function buildMetadata(val) {
             return obj.Cluster === clusterKeyValue2;
           });
           
-             var titles=values2.map(({ title }) => title).slice(0,10).reverse();
+             var titles=values2.map(({ title }) => title).slice(0,10);
              var avg_rating=values2.map(({ avg_rating }) => avg_rating);
              var rating_counts=values2.map(({ rating_counts }) => rating_counts);
              var ratings=titles.map(titles => avg_rating*rating_counts);
              var genres=values2.map(({ genres }) => genres);
-             var rating = (values2.map( values => values.avg_rating* values.rating_counts).slice(0,10).reverse());
+             var rating = (values2.map( values => values.avg_rating* values.rating_counts).slice(0,10));
              var rating2 = rating.slice(0,10).reverse();
              var genres2 = values2.map( values => values.genres);
              console.log (genres2);
@@ -143,7 +143,7 @@ function buildMetadata(val) {
             transforms: [{
               type: 'sort',
               target: 'x',
-              order: 'descending',
+              order: 'ascending',
             },
             {
               type: 'filter',
