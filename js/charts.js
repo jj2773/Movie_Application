@@ -167,7 +167,7 @@ function buildMetadata(val) {
           xaxis: {
             rangemode: 'tozero',
             autorange: true,
-            title: "Avg_Rating *Ratings"
+            title: "Average Rating * Rating Counts"
           },
           yaxis: {
             rangemode: 'nonnegative',
