@@ -32,9 +32,11 @@ init();
 
 function optionChanged(newMovie) {
   // Fetch new data each time a new sample is selected
+  
   buildCharts(newMovie);
-  buildMetadata(newMovie);
   d3.select("svg").remove();
+  buildMetadata(newMovie);
+  
   
   
 
@@ -166,12 +168,12 @@ function buildMetadata(val) {
           showlegend: false,
           xaxis: {
             rangemode: 'tozero',
-            autorange: true,
+            fixedrange: true,
             title: "Average Rating * Rating Counts"
           },
           yaxis: {
             rangemode: 'nonnegative',
-            autorange: true,
+            fixedrange: true,
             showticklabels: true,
             tickangle: 55,
             
@@ -190,36 +192,26 @@ function buildMetadata(val) {
         
         
        var margin = {top: 10, right: 10, bottom: 10, left: 10},
-    width = 450 - margin.left - margin.right,
-    height = 450 - margin.top - margin.bottom;
-    var fill = d3.scale.category20();
+       width = 400 - margin.left - margin.right,
+       height = 400 - margin.top - margin.bottom;
+    
 
 // append the svg object to the body of the page
-var movieDataset = d3.select("#my_dataviz").append("svg")
+     var movieDataset = d3.select("#my_dataviz").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-  .append("g")
-    .attr("transform",
+     .append("g")
+     .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
 // Constructs a new cloud layout instance. It run an algorithm to find the position of words that suits your requirements
-var layout = d3.layout.cloud()
+   var layout = d3.layout.cloud()
   .size([width, height])
   .words(myWords.map(function(d) { return {text: d}; }))
   .padding(10)
   .fontSize(60)
   .on("end", draw);
-layout.start();
-var options = movieDataset.selectAll("option")
-.data(myWords)
-.enter()
-.append("option")
-.text(function(d) {
-  return d;
-})
-.attr("value", function(d) {
-  return d;
-})
+ layout.start();
 // This function takes the output of 'layout' above and draw the words
 // Better not to touch it. To change parameters, play with the 'layout' variable above
 function draw(words) {
