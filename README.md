@@ -25,20 +25,18 @@ Slack Team 06-Purple Channel will be used for communication between team members
 ## Individual Branches and Targeted Technology
 
 1. Database 
-   - Two databases are leveraged for this project.
-      - A PostGres database houses the movielens data which is then pulled into the machine learning workbook.
-      - A SQLite database was used to hold the machine learning output, movie links, and ratings summary data for use in the app.
+   - A PostGres database houses the movielens data which is then pulled into the machine learning workbook.
 2. Machinelearning 
    - KMeans clustering leveraging genome-scores
 3. Visualizationapp
-   - D3 JavaScript providing user interaction and SQLite database queries.
+   - D3 JavaScript providing user interaction.
+   - Tableau dashboard also developed on Tableau public for improved user interaction and visualization.
 
 ## Dataset Details
 To ensure movie clustring was accurate, purple team carefully selected datasets that would provide robust movie data to the users. The following datasets were used for purple team's movie applciation:
 1) movies.csv- stored movie IDs, titles and genres. This would be the base file for purple team's movie application.
 2) genome-score.csv- stored movie ID, tag ID with a relevance to the movie. This dataset makes the purple team's movie application's movie suggestion to its users more robust, as there is a proven correlation between the tag ID and relevance to the movie ID. This means that if the tag ID is 01, representing 007, then the relevance factor in relation to the movie ID is provided on a scale of 0-1. Overall, this makes the movies' data analysis for the movie application statistically significant. 
 3) ratings.csv-stored user ID, movie ID and ratings (0-5). This dataset helps in aiding the user's with their decision of viewing the movie suggested by the purple team's movie application. For example, if a suggested movie has a rating of 3, then the users can change their preferences for better movies, if required.
-4) links.csv-stored movie ID, IMDB ID, TMDBID. Used to provide links to movie application users, where users can view the trailer as well as what streaming websites are streaming the particular movie. This enhances the usability of the movie application. 
 
 ## Movie Genome Scoring Tag Correlation
 There are over 1000 user comment tags that were scored with a relevance by movielens group against each movie.  It is desired to leverage this scoring to find movies that are similar in tagging.  The movies could then be clustered by tag scoring using a KMeans machine learning algorithm. As a first step it was desired to plot similar movies for all genome tag relevance scores for a visual correlation.  As seen in the below graph a correlation does exist and is stronger for movies that are more similar.
