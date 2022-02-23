@@ -1,5 +1,5 @@
 # Movie_Application
-Utilizing Machine Learning, JavaScript, PostGres, and SQLite a similar movie suggestion application is developed.
+Utilizing Machine Learning, JavaScript, Tableau, and PostGres, for a similar movie suggestion application.
 
 [Google Slides Project Presentation](https://docs.google.com/presentation/d/1zOGgT9MDqIZ27gWdtoPrHMQ59aiYRrBtwYaAyDOytTI/edit?usp=sharing) 
 
